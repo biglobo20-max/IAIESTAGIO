@@ -772,7 +772,7 @@
           <!-- FORMULÁRIO COM INTEGRAÇÃO n8n (JSON) -->
           <form
             id="colaboradorForm"
-            action="https://n8n-n8n-webhook.nyrnfd.easypanel.host/webhook/contratacaodireta"
+            action="https://n8n-n8n-webhook.nyrnfd.easypanel.host/webhook/R134265376534"
             method="post"
           >
             <!-- Seção 1 - Escolha da função -->
@@ -1562,15 +1562,22 @@
       submitBtn.disabled = true;
       submitBtn.textContent = "Enviando...";
 
-      // monta objeto com os dados do formulário em JSON
+      // monta payload do formulário evitando preflight CORS
+      // Usamos URLSearchParams para enviar como application/x-www-form-urlencoded,
+      // permitindo múltiplos valores (checkboxes) e reduzindo risco de bloqueio CORS.
       const formData = new FormData(form);
-      const data = Object.fromEntries(formData.entries());
+      const body = new URLSearchParams();
+      for (const [key, value] of formData.entries()) {
+        body.append(key, value);
+      }
 
       try {
         const response = await fetch(form.action, {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data),
+          // sem headers customizados para evitar preflight; o navegador define
+          // automaticamente Content-Type: application/x-www-form-urlencoded
+          body,
+          mode: "cors",
         });
 
         if (response.ok) {
@@ -1580,12 +1587,13 @@
           atualizarRoleBlocks(); // esconde blocos após reset
         } else {
           feedbackEl.textContent =
-            "❌ Erro ao enviar os dados. Verifique o webhook do n8n ou o fluxo configurado.";
+            "❌ Erro ao enviar. O servidor respondeu sem sucesso (" + response.status + ").";
           feedbackEl.style.color = "#ff4b4b";
         }
       } catch (error) {
+        console.error("Falha no envio do formulário:", error);
         feedbackEl.textContent =
-          "⚠️ Falha de conexão. Verifique sua internet ou se o servidor n8n está acessível.";
+          "⚠️ Falha de conexão ou bloqueio CORS. Verifique sua internet e se o servidor n8n permite requisições do seu domínio.";
         feedbackEl.style.color = "#ffcc00";
       } finally {
         submitBtn.disabled = false;
