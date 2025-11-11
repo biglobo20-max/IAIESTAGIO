@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Seleção de Colaboradores - IAI Fitness</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Fonte moderna -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #050505;
+      --bg-alt: #111111;
+      --yellow: #ffd700;
+      --yellow-soft: #ffeb7a;
+      --text: #f5f5f5;
+      --muted: #bbbbbb;
+      --border: #333333;
+      --error: #ff4b4b;
+      --radius-lg: 18px;
+      --radius-md: 12px;
+      --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.55);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      background: radial-gradient(circle at top, #1a1a1a 0, var(--bg) 55%);
+      color: var(--text);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--yellow);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.94),
+        rgba(0, 0, 0, 0.75),
+        transparent
+      );
+      border-bottom: 1px solid rgba(255, 215, 0, 0.08);
+    }
+
+    .nav {
+      max-width: 1120px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark {
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      background-image: url("https://i.pinimg.com/736x/c3/19/2b/c3192b875122bf938694c46987ff2297.jpg");
+      background-size: cover;
+      background-position: center;
+      border: 2px solid var(--yellow);
+      box-shadow: 0 0 24px rgba(255, 215, 0, 0.7);
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand-text span:first-child {
+      font-size: 14px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--yellow-soft);
+      font-weight: 600;
+    }
+
+    .brand-text span:last-child {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      height: 2px;
+      width: 0;
+      background: linear-gradient(90deg, var(--yellow), #fff4a5);
+      transition: width 0.2s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--yellow);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* LAYOUT PRINCIPAL: HEADLINE + FORM EM COLUNA (UM ABAIXO DO OUTRO) */
+
+    .hero-wrapper {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .hero-content {
+      padding-right: 0;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 4px 9px 4px 4px;
+      background: rgba(255, 215, 0, 0.08);
+      border-radius: 999px;
+      border: 1px solid rgba(255, 215, 0, 0.16);
+      margin-bottom: 16px;
+    }
+
+    .badge-pill {
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 30%, #fff8c9, var(--yellow));
+      color: #000;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+    }
+
+    .badge-text {
+      font-size: 11px;
+      color: var(--yellow-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+    }
+
+    .hero-title {
+      font-size: clamp(26px, 3vw, 32px);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .hero-title span.highlight {
+      color: var(--yellow);
+      text-shadow: 0 0 14px rgba(255, 215, 0, 0.45);
+    }
+
+    .hero-subtitle {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 18px;
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 22px;
+      font-size: 12px;
+      color: var(--muted);
+      justify-content: center;
+    }
+
+    .hero-chip {
+      padding: 6px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 215, 0, 0.2);
+      background: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      margin-bottom: 16px;
+      justify-content: center;
+    }
+
+    .btn-primary {
+      border: none;
+      outline: none;
+      padding: 10px 24px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--yellow), #fff2a6);
+      color: #000;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(255, 215, 0, 0.3);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 36px rgba(255, 215, 0, 0.36);
+    }
+
+    .btn-ghost {
+      padding: 9px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 215, 0, 0.32);
+      background: transparent;
+      color: var(--yellow-soft);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      cursor: pointer;
+    }
+
+    .hero-note {
+      font-size: 11px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .hero-note strong {
+      color: var(--yellow-soft);
+    }
+
+    /* CARD DO FORMULÁRIO */
+
+    .card {
+      background: radial-gradient(circle at 0 0, #333333 0, #151515 38%, #050505 100%);
+      border-radius: 24px;
+      padding: 22px 20px 22px;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(255, 215, 0, 0.16);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .card-header h2 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .card-header p {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .pill-status {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      border: 1px solid rgba(255, 215, 0, 0.35);
+      color: var(--yellow-soft);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .form-section {
+      border-radius: var(--radius-md);
+      padding: 12px 12px 10px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(255, 215, 0, 0.08);
+    }
+
+    .form-section + .form-section {
+      margin-top: 4px;
+    }
+
+    .form-section-title {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--yellow-soft);
+      margin-bottom: 8px;
+    }
+
+    .field-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    @media (max-width: 700px) {
+      .field-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    label span.required {
+      color: var(--yellow-soft);
+      margin-left: 4px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(10, 10, 10, 0.9);
+      padding: 9px 13px;
+      font-size: 13px;
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    textarea {
+      border-radius: 16px;
+      resize: vertical;
+      min-height: 70px;
+      padding-top: 9px;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: #777777;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 1px rgba(255, 215, 0, 0.4);
+      background: rgba(15, 15, 15, 0.98);
+    }
+
+    .options-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      font-size: 12px;
+    }
+
+    .options-inline label {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .helper {
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .scale-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 11px;
+    }
+
+    .scale-inputs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: nowrap;           /* impede quebra de linha */
+      justify-content: flex-start; /* mantém alinhados à esquerda */
+    }
+
+    .scale-inputs label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;                 /* largura igual para todos */
+      height: 34px;
+      border-radius: 50%;          /* forma circular */
+      border: 1px solid var(--border);
+      cursor: pointer;
+      color: var(--muted);
+      font-weight: 500;
+      transition: all 0.15s ease;
+    }
+
+    .scale-inputs input {
+      display: none;
+    }
+
+    .scale-inputs input:checked + span,
+    .scale-inputs label:has(input:checked) {
+      border-color: var(--yellow);
+      background: rgba(255, 215, 0, 0.15);
+      color: var(--yellow-soft);
+      box-shadow: 0 0 6px rgba(255, 215, 0, 0.3);
+    }
+
+    .pill-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .pill-cloud label {
+      font-size: 11px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      padding: 5px 10px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    .pill-cloud input {
+      display: none;
+    }
+
+    .pill-cloud input:checked + span {
+      border-color: var(--yellow);
+      background: rgba(255, 215, 0, 0.1);
+      color: var(--yellow-soft);
+    }
+
+    .form-footer {
+      margin-top: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .error-message {
+      display: none;
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--error);
+    }
+
+    .error .error-message {
+      display: block;
+    }
+
+    .error input,
+    .error select,
+    .error textarea {
+      border-color: var(--error);
+      box-shadow: 0 0 0 1px rgba(255, 75, 75, 0.4);
+    }
+
+    footer {
+      margin-top: auto;
+      border-top: 1px solid rgba(255, 215, 0, 0.08);
+      padding: 12px 20px 18px;
+      font-size: 11px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    footer span.brand-footer {
+      color: var(--yellow-soft);
+      font-weight: 500;
+    }
+
+    /* blocos dinâmicos das funções */
+    .role-block {
+      display: none;
+      margin-top: 8px;
+    }
+
+    .role-block.active {
+      display: block;
+    }
+
+    /* ====== RESPONSIVIDADE ADICIONAL ====== */
+
+    @media (max-width: 1024px) {
+      .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .card {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .nav-links {
+        margin-top: 8px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero-wrapper {
+        padding: 24px 16px 32px;
+      }
+
+      .hero-title {
+        font-size: 24px;
+      }
+
+      .hero-subtitle {
+        font-size: 13px;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        text-align: center;
+      }
+
+      .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 22px;
+      }
+
+      .hero-subtitle {
+        font-size: 12px;
+      }
+
+      .hero-chip {
+        font-size: 11px;
+        padding: 4px 9px;
+      }
+
+      .card {
+        border-radius: 18px;
+        padding: 16px 14px;
+      }
+
+      label {
+        font-size: 11px;
+      }
+
+      input[type="text"],
+      input[type="email"],
+      input[type="tel"],
+      input[type="number"],
+      select,
+      textarea {
+        font-size: 12px;
+      }
+
+      .form-section-title {
+        font-size: 11px;
+      }
+
+      .nav-links {
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-mark" aria-label="IAI Fitness Logo"></div>
+          <div class="brand-text">
+            <span>Seleção Colaboradores</span>
+            <span>IAI Fitness • Alta Performance</span>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#sobre">Sobre as vagas</a>
+          <a href="#formulario">Formulário</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero-wrapper" id="sobre">
+        <div class="hero-content">
+          <div class="badge">
+            <span class="badge-pill">Trabalhe Conosco</span>
+            <span class="badge-text">Seleção de Colaboradores • IAI Fitness</span>
+          </div>
+
+          <h1 class="hero-title">
+            Faça parte do time que transforma <span class="highlight">energia, saúde e performance</span>
+            em resultado todos os dias.
+          </h1>
+
+          <p class="hero-subtitle">
+            Estamos selecionando novos talentos para compor o time da
+            <strong>IAI Fitness</strong> em diferentes funções:
+            Serviços Gerais, Auxiliar / Menor Aprendiz, Recepcionista,
+            Professor de Educação Física e Estágio em Educação Física.
+          </p>
+
+          <div class="hero-meta">
+            <div class="hero-chip">📍 Unidades IAI Fitness</div>
+            <div class="hero-chip">💰 Modelo: Fixo + Variável (onde aplicável)</div>
+            <div class="hero-chip">⏰ Carga horária conforme a função</div>
+            <div class="hero-chip">🎯 Ambiente focado em resultado e experiência do aluno</div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="btn-primary" onclick="scrollToForm()">Preencher formulário</button>
+            <button class="btn-ghost" onclick="scrollToForm()">Quero fazer parte do time</button>
+          </div>
+
+          <p class="hero-note">
+            <strong>Importante:</strong> cada área possui requisitos específicos. Leia as perguntas com atenção
+            e responda com sinceridade – este é o primeiro filtro da seleção.
+          </p>
+        </div>
+
+        <aside class="card" id="formulario">
+          <div class="card-header">
+            <div>
+              <h2>Formulário de Seleção de Colaboradores</h2>
+              <p>Escolha a função desejada e responda às perguntas com calma e clareza.</p>
+            </div>
+            <span class="pill-status">Processo seletivo ativo</span>
+          </div>
+
+          <!-- FORMULÁRIO COM INTEGRAÇÃO n8n -->
+          <form
+            id="colaboradorForm"
+            action="https://n8n-n8n-webhook.nyrnfd.easypanel.host/webhook/contratacaodireta"
+            method="post"
+          >
+            <!-- Seção 1 - Escolha da função -->
+            <div class="form-section">
+              <div class="form-section-title">Seção 1: Escolha da função</div>
+
+              <div class="form-group">
+                <label>
+                  1. Para qual função você deseja se candidatar?
+                  <span class="required">*</span>
+                </label>
+                <div class="options-inline">
+                  <label>
+                    <input type="radio" name="funcao_desejada" value="servicos_gerais" required />
+                    <span>🧹 Serviços Gerais</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="funcao_desejada" value="auxiliar_menor_aprendiz" />
+                    <span>👩‍🎓 Auxiliar / Menor Aprendiz</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="funcao_desejada" value="recepcionista" />
+                    <span>💁‍♀️ Recepcionista</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="funcao_desejada" value="professor_ed_fisica" />
+                    <span>🧑‍🏫 Professor de Educação Física</span>
+                  </label>
+                  <label>
+                    <input type="radio" name="funcao_desejada" value="estagio_ed_fisica" />
+                    <span>🎓 Estágio em Educação Física</span>
+                  </label>
+                </div>
+                <p class="helper">
+                  Ao selecionar a função, as perguntas específicas aparecerão abaixo para você responder.
+                </p>
+              </div>
+            </div>
+
+            <!-- Seção 2 - Perguntas da função escolhida -->
+            <div class="form-section">
+              <div class="form-section-title">Seção 2: Perguntas da função escolhida</div>
+
+              <!-- SERVIÇOS GERAIS -->
+              <div class="role-block" data-role="servicos_gerais">
+                <div class="form-group">
+                  <label>1. Nome completo <span class="required">*</span></label>
+                  <input type="text" name="sg_nome_completo" placeholder="Seu nome e sobrenome" />
+                </div>
+
+                <div class="form-group">
+                  <label>2. Idade <span class="required">*</span></label>
+                  <input type="number" name="sg_idade" min="16" max="80" placeholder="Ex: 32" />
+                </div>
+
+                <div class="form-group">
+                  <label>3. Cidade e bairro onde mora</label>
+                  <input type="text" name="sg_cidade_bairro" placeholder="Ex: Cruz das Almas - Centro" />
+                </div>
+
+                <div class="form-group">
+                  <label>
+                    4. Você tem alguma experiência com limpeza, organização ou manutenção? Onde e por quanto tempo?
+                  </label>
+                  <textarea
+                    name="sg_experiencia_limpeza"
+                    placeholder="Conte se já trabalhou com limpeza, conservação, manutenção, em quais lugares e por quanto tempo."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>5. O que mais te motiva a trabalhar na IAI FITNESS?</label>
+                  <textarea
+                    name="sg_motivacao"
+                    placeholder="Fale sobre o que te chama atenção na IAI FITNESS e por que quer estar aqui."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>6. Você se sente bem trabalhando em equipe, mesmo quando o serviço é pesado?</label>
+                  <textarea
+                    name="sg_trabalho_equipe"
+                    placeholder="Conte como você lida com esforço físico e trabalho em conjunto."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>7. Como você reage quando precisa refazer algo que já fez?</label>
+                  <textarea
+                    name="sg_refazer_trabalho"
+                    placeholder="Descreva sua reação quando precisa corrigir ou refazer um serviço."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>8. Marque as palavras que mais combinam com você:</label>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="sg_palavras" value="Pontualidade" /><span>Pontualidade</span></label>
+                    <label><input type="checkbox" name="sg_palavras" value="Organização" /><span>Organização</span></label>
+                    <label><input type="checkbox" name="sg_palavras" value="Responsabilidade" /><span>Responsabilidade</span></label>
+                    <label><input type="checkbox" name="sg_palavras" value="Vontade de aprender" /><span>Vontade de aprender</span></label>
+                    <label><input type="checkbox" name="sg_palavras" value="Energia" /><span>Energia</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>9. Qual parte de um ambiente você mais gosta de ver limpo e bem feito?</label>
+                  <textarea
+                    name="sg_parte_ambiente"
+                    placeholder="Ex: banheiros, recepção, área de treino, vidros, etc."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>10. Já trabalhou em academia, escola ou comércio antes? Se sim, em qual função?</label>
+                  <textarea
+                    name="sg_experiencia_ambientes"
+                    placeholder="Conte sobre experiências anteriores em ambientes de atendimento ao público."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>11. Você tem disponibilidade para trabalhar em finais de semana, se necessário?</label>
+                  <textarea
+                    name="sg_disponibilidade"
+                    placeholder="Detalhe como é sua disponibilidade de horários."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>12. Como você reage quando um colega faz algo de forma errada?</label>
+                  <textarea
+                    name="sg_colega_erro"
+                    placeholder="Explique como costuma agir com colegas em situações de erro."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>13. Em uma palavra, como você define “trabalho bem feito”?</label>
+                  <input
+                    type="text"
+                    name="sg_trabalho_bem_feito"
+                    placeholder="Ex: Capricho, Responsabilidade, Cuidado..."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>14. O que você acredita que pode contribuir para a equipe da IAI FITNESS?</label>
+                  <textarea
+                    name="sg_contribuicao"
+                    placeholder="Fale sobre seus diferenciais, atitudes e jeito de trabalhar."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>15. Por que deveríamos te escolher para essa vaga?</label>
+                  <textarea
+                    name="sg_por_que_escolher"
+                    placeholder="Resuma por que você se vê nessa vaga."
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- AUXILIAR / MENOR APRENDIZ -->
+              <div class="role-block" data-role="auxiliar_menor_aprendiz">
+                <div class="form-group">
+                  <label>1. Nome completo <span class="required">*</span></label>
+                  <input type="text" name="aux_nome_completo" placeholder="Seu nome e sobrenome" />
+                </div>
+
+                <div class="form-group">
+                  <label>2. Idade <span class="required">*</span></label>
+                  <input type="number" name="aux_idade" min="14" max="80" placeholder="Ex: 17" />
+                </div>
+
+                <div class="form-group">
+                  <label>3. Está estudando? Se sim, qual curso e turno?</label>
+                  <input
+                    type="text"
+                    name="aux_estudos"
+                    placeholder="Ex: Ensino Médio, 2º ano, turno matutino."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>4. O que te faz querer trabalhar na IAI FITNESS?</label>
+                  <textarea
+                    name="aux_motivacao"
+                    placeholder="Conte o que te motiva a iniciar sua jornada profissional aqui."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>5. Qual tipo de tarefa te chama mais atenção?</label>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="aux_tarefas" value="Organização e apoio interno" /><span>Organização e apoio interno</span></label>
+                    <label><input type="checkbox" name="aux_tarefas" value="Atendimento a pessoas" /><span>Atendimento a pessoas</span></label>
+                    <label><input type="checkbox" name="aux_tarefas" value="Comunicação e redes sociais" /><span>Comunicação e redes sociais</span></label>
+                    <label><input type="checkbox" name="aux_tarefas" value="Controle e planilhas" /><span>Controle e planilhas</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>6. Já teve alguma experiência de trabalho, estágio ou voluntariado?</label>
+                  <textarea
+                    name="aux_experiencia"
+                    placeholder="Descreva brevemente se já atuou em algum lugar, mesmo informalmente."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>7. Como você reage quando precisa aprender algo novo?</label>
+                  <textarea
+                    name="aux_aprender_novo"
+                    placeholder="Conte como lida com processos, treinamentos e novidades."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>8. Marque as palavras que mais te definem:</label>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="aux_palavras" value="Curioso(a)" /><span>Curioso(a)</span></label>
+                    <label><input type="checkbox" name="aux_palavras" value="Comunicativo(a)" /><span>Comunicativo(a)</span></label>
+                    <label><input type="checkbox" name="aux_palavras" value="Responsável" /><span>Responsável</span></label>
+                    <label><input type="checkbox" name="aux_palavras" value="Criativo(a)" /><span>Criativo(a)</span></label>
+                    <label><input type="checkbox" name="aux_palavras" value="Dedicado(a)" /><span>Dedicado(a)</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>9. Que tipo de ambiente te ajuda a render mais?</label>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="aux_ambiente" value="Calmo e organizado" /><span>Calmo e organizado</span></label>
+                    <label><input type="checkbox" name="aux_ambiente" value="Dinâmico e com movimento" /><span>Dinâmico e com movimento</span></label>
+                    <label><input type="checkbox" name="aux_ambiente" value="Competitivo e cheio de metas" /><span>Competitivo e cheio de metas</span></label>
+                    <label><input type="checkbox" name="aux_ambiente" value="Livre e criativo" /><span>Livre e criativo</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>10. O que mais te motiva: aprender algo novo ou mostrar que é capaz?</label>
+                  <textarea
+                    name="aux_motivacao_principal"
+                    placeholder="Explique o que mais te empolga no trabalho."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>11. Como você lida com críticas e instruções?</label>
+                  <textarea
+                    name="aux_criticas"
+                    placeholder="Conte como reage quando recebe orientações ou feedback."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>12. Qual foi a última coisa nova que aprendeu e te deixou feliz?</label>
+                  <textarea
+                    name="aux_ultimo_aprendizado"
+                    placeholder="Pode ser algo da escola, da vida ou de algum curso."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>13. O que você mais espera aprender dentro da academia?</label>
+                  <textarea
+                    name="aux_aprender_academia"
+                    placeholder="Fale sobre expectativas de aprendizado no dia a dia."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>14. Como você reagiria se um colega de equipe pedisse ajuda com algo que você não domina?</label>
+                  <textarea
+                    name="aux_colega_ajuda"
+                    placeholder="Explique como lidaria com essa situação."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>15. Por que você acha que a IAI FITNESS é o lugar certo para você começar sua jornada profissional?</label>
+                  <textarea
+                    name="aux_por_que_iai"
+                    placeholder="Fale de forma sincera sobre sua conexão com a marca."
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- RECEPCIONISTA -->
+              <div class="role-block" data-role="recepcionista">
+                <div class="form-group">
+                  <label>1. Nome completo <span class="required">*</span></label>
+                  <input type="text" name="rec_nome_completo" placeholder="Seu nome e sobrenome" />
+                </div>
+
+                <div class="form-group">
+                  <label>2. Idade <span class="required">*</span></label>
+                  <input type="number" name="rec_idade" min="18" max="80" placeholder="Ex: 24" />
+                </div>
+
+                <div class="form-group">
+                  <label>3. Já trabalhou com atendimento ou vendas? Se sim, onde?</label>
+                  <textarea
+                    name="rec_experiencia"
+                    placeholder="Conte sobre experiências em atendimento, vendas ou recepção."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>4. O que te motiva a trabalhar na recepção de uma academia?</label>
+                  <textarea
+                    name="rec_motivacao"
+                    placeholder="Fale sobre o que te atrai em lidar diretamente com clientes."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>5. Em uma escala de 1 a 5, quanto você gosta de falar com pessoas?</label>
+                  <div class="scale-inputs">
+                    <label><input type="radio" name="rec_escala_pessoas" value="1" /><span>1</span></label>
+                    <label><input type="radio" name="rec_escala_pessoas" value="2" /><span>2</span></label>
+                    <label><input type="radio" name="rec_escala_pessoas" value="3" /><span>3</span></label>
+                    <label><input type="radio" name="rec_escala_pessoas" value="4" /><span>4</span></label>
+                    <label><input type="radio" name="rec_escala_pessoas" value="5" /><span>5</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>6. Marque as habilidades que você acredita ter:</label>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="rec_habilidades" value="Comunicação clara" /><span>Comunicação clara</span></label>
+                    <label><input type="checkbox" name="rec_habilidades" value="Organização" /><span>Organização</span></label>
+                    <label><input type="checkbox" name="rec_habilidades" value="Proatividade" /><span>Proatividade</span></label>
+                    <label><input type="checkbox" name="rec_habilidades" value="Facilidade com tecnologia" /><span>Facilidade com tecnologia</span></label>
+                    <label><input type="checkbox" name="rec_habilidades" value="Vontade de vender" /><span>Vontade de vender</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>7. Já teve experiência com metas de vendas?</label>
+                  <textarea
+                    name="rec_metas"
+                    placeholder="Conte se já trabalhou com metas e resultados mensuráveis."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>8. Como você reagiria diante de um cliente insatisfeito?</label>
+                  <textarea
+                    name="rec_cliente_insatisfeito"
+                    placeholder="Descreva como resolveria a situação mantendo o bom atendimento."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>9. O que é mais importante em um bom atendimento?</label>
+                  <textarea
+                    name="rec_bom_atendimento"
+                    placeholder="Na sua visão, qual o ponto principal de um atendimento de qualidade?"
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>10. Você se considera uma pessoa paciente e empática?</label>
+                  <textarea
+                    name="rec_paciencia_empatia"
+                    placeholder="Explique com exemplos do seu dia a dia."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>11. Como lida com situações de pressão e movimento intenso?</label>
+                  <textarea
+                    name="rec_pressao"
+                    placeholder="Conte como organiza seu emocional e prioridades nesses momentos."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>12. O que te diferencia de outras pessoas que também buscam essa vaga?</label>
+                  <textarea
+                    name="rec_diferenciais"
+                    placeholder="Fale dos seus pontos fortes e experiências que te destacam."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>13. Em uma palavra, o que “atendimento de qualidade” significa pra você?</label>
+                  <input
+                    type="text"
+                    name="rec_atendimento_palavra"
+                    placeholder="Ex: Cuidado, Respeito, Solução..."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>14. Se um cliente entrar mal-humorado, o que você faria para mudar o clima?</label>
+                  <textarea
+                    name="rec_cliente_mal_humorado"
+                    placeholder="Descreva sua estratégia para acolher e reverter o humor do cliente."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>15. Por que você acredita que combina com o estilo da IAI FITNESS?</label>
+                  <textarea
+                    name="rec_por_que_iai"
+                    placeholder="Explique por que você se identifica com a cultura da IAI."
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- PROFESSOR DE EDUCAÇÃO FÍSICA -->
+              <div class="role-block" data-role="professor_ed_fisica">
+                <div class="form-group">
+                  <label>1. Nome completo <span class="required">*</span></label>
+                  <input type="text" name="prof_nome_completo" placeholder="Seu nome e sobrenome" />
+                </div>
+
+                <div class="form-group">
+                  <label>2. Idade <span class="required">*</span></label>
+                  <input type="number" name="prof_idade" min="18" max="80" placeholder="Ex: 29" />
+                </div>
+
+                <div class="form-group">
+                  <label>3. É formado ou está cursando Educação Física?</label>
+                  <input
+                    type="text"
+                    name="prof_formacao"
+                    placeholder="Licenciatura/Bacharelado, período, instituição..."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>4. Já atuou como professor ou instrutor? Conte brevemente.</label>
+                  <textarea
+                    name="prof_experiencia"
+                    placeholder="Descreva academias, estúdios, modalidades e tempo de atuação."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>5. Qual área da Educação Física você mais gosta?</label>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="prof_area" value="Musculação" /><span>Musculação</span></label>
+                    <label><input type="checkbox" name="prof_area" value="Funcional" /><span>Funcional</span></label>
+                    <label><input type="checkbox" name="prof_area" value="Personal Training" /><span>Personal Training</span></label>
+                    <label><input type="checkbox" name="prof_area" value="Avaliação Física" /><span>Avaliação Física</span></label>
+                    <label><input type="checkbox" name="prof_area" value="Condicionamento / Performance" /><span>Condicionamento / Performance</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>6. O que te motiva a dar aula em uma academia?</label>
+                  <textarea
+                    name="prof_motivacao"
+                    placeholder="Fale sobre seu propósito em sala, na musculação ou no funcional."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>7. Como você reage com alunos desmotivados?</label>
+                  <textarea
+                    name="prof_aluno_desmotivado"
+                    placeholder="Explique como busca engajar e motivar novamente."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>8. O que, na sua opinião, diferencia um bom professor de um excelente professor?</label>
+                  <textarea
+                    name="prof_bom_x_excelente"
+                    placeholder="Traga sua visão sobre técnica, relacionamento e resultados."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>9. Marque as palavras que mais te representam:</label>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="prof_palavras" value="Liderança" /><span>Liderança</span></label>
+                    <label><input type="checkbox" name="prof_palavras" value="Comunicação" /><span>Comunicação</span></label>
+                    <label><input type="checkbox" name="prof_palavras" value="Paciência" /><span>Paciência</span></label>
+                    <label><input type="checkbox" name="prof_palavras" value="Técnica" /><span>Técnica</span></label>
+                    <label><input type="checkbox" name="prof_palavras" value="Motivação" /><span>Motivação</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>10. Você prefere um ambiente com autonomia ou metas definidas?</label>
+                  <textarea
+                    name="prof_ambiente"
+                    placeholder="Explique como gosta de trabalhar em relação à liberdade e metas."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>11. Já trabalhou com algum sistema de acompanhamento de alunos (CRM, planilhas, apps)?</label>
+                  <textarea
+                    name="prof_sistemas"
+                    placeholder="Cite exemplos de ferramentas que já utilizou."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>12. Como você lida com feedbacks dos alunos ou coordenação?</label>
+                  <textarea
+                    name="prof_feedback"
+                    placeholder="Fale sobre como recebe e aplica feedbacks."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>13. Qual foi a última atualização profissional que você buscou?</label>
+                  <textarea
+                    name="prof_atualizacao"
+                    placeholder="Cursos, workshops, certificações, congressos..."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>14. Qual é o seu propósito como professor dentro da área fitness?</label>
+                  <textarea
+                    name="prof_proposito"
+                    placeholder="Resuma o impacto que você quer gerar nos alunos."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>15. Por que você acredita que se encaixa no time IAI FITNESS?</label>
+                  <textarea
+                    name="prof_por_que_iai"
+                    placeholder="Mostre por que seu perfil combina com a cultura IAI."
+                  ></textarea>
+                </div>
+              </div>
+
+              <!-- ESTÁGIO EM EDUCAÇÃO FÍSICA -->
+              <div class="role-block" data-role="estagio_ed_fisica">
+                <div class="form-group">
+                  <label>1. Nome completo <span class="required">*</span></label>
+                  <input type="text" name="est_nome_completo" placeholder="Seu nome e sobrenome" />
+                </div>
+
+                <div class="form-group">
+                  <label>2. Idade <span class="required">*</span></label>
+                  <input type="number" name="est_idade" min="17" max="80" placeholder="Ex: 21" />
+                </div>
+
+                <div class="form-group">
+                  <label>3. Está cursando qual período de Educação Física?</label>
+                  <input
+                    type="text"
+                    name="est_periodo"
+                    placeholder="Ex: 5º semestre - Bacharelado."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>4. Por que você escolheu essa área?</label>
+                  <textarea
+                    name="est_motivo_area"
+                    placeholder="Conte o que te levou a escolher Educação Física."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>5. Qual tipo de treino ou metodologia mais te chama atenção?</label>
+                  <textarea
+                    name="est_treino_metodologia"
+                    placeholder="Ex: musculação, funcional, HIIT, performance, reabilitação..."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>6. Já teve alguma vivência prática (estágio, voluntariado, monitoria)?</label>
+                  <textarea
+                    name="est_vivencia"
+                    placeholder="Descreva onde, por quanto tempo e o que fazia."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>7. O que mais te motiva em aprender dentro de uma academia?</label>
+                  <textarea
+                    name="est_motivacao_academia"
+                    placeholder="Explique o que te empolga no dia a dia de academia."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>8. Como você lida com erros ou correções durante o treino?</label>
+                  <textarea
+                    name="est_erros"
+                    placeholder="Fale sobre como reage e aprende com correções."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>9. Marque as palavras que te definem melhor:</label>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="est_palavras" value="Foco" /><span>Foco</span></label>
+                    <label><input type="checkbox" name="est_palavras" value="Dedicação" /><span>Dedicação</span></label>
+                    <label><input type="checkbox" name="est_palavras" value="Comunicação" /><span>Comunicação</span></label>
+                    <label><input type="checkbox" name="est_palavras" value="Trabalho em equipe" /><span>Trabalho em equipe</span></label>
+                    <label><input type="checkbox" name="est_palavras" value="Vontade de aprender" /><span>Vontade de aprender</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>10. Como você descreveria um bom estagiário?</label>
+                  <textarea
+                    name="est_bom_estagiario"
+                    placeholder="Na sua visão, quais atitudes e comportamentos são essenciais."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>11. Você se sente mais confortável atuando em qual função?</label>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="est_funcao" value="Acompanhamento de alunos" /><span>Acompanhamento de alunos</span></label>
+                    <label><input type="checkbox" name="est_funcao" value="Organização do ambiente" /><span>Organização do ambiente</span></label>
+                    <label><input type="checkbox" name="est_funcao" value="Apoio a professores" /><span>Apoio a professores</span></label>
+                    <label><input type="checkbox" name="est_funcao" value="Avaliação física" /><span>Avaliação física</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>12. Como você lida com horários e pontualidade?</label>
+                  <textarea
+                    name="est_pontualidade"
+                    placeholder="Conte como organiza seus compromissos e responsabilidades."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>13. Qual foi o maior aprendizado da faculdade até agora?</label>
+                  <textarea
+                    name="est_maior_aprendizado"
+                    placeholder="Pode ser algo técnico, humano ou de experiência."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>14. O que você mais espera conquistar com o estágio na IAI FITNESS?</label>
+                  <textarea
+                    name="est_conquistas"
+                    placeholder="Descreva objetivos de carreira e desenvolvimento."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>15. Por que deveríamos escolher você para o nosso time?</label>
+                  <textarea
+                    name="est_por_que_escolher"
+                    placeholder="Mostre por que você se vê como parte da equipe."
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seção 3 - Contatos gerais -->
+            <div class="form-section">
+              <div class="form-section-title">Seção 3: Contatos gerais</div>
+              <div class="field-grid">
+                <div class="form-group">
+                  <label for="email">
+                    E-mail para contato <span class="required">*</span>
+                  </label>
+                  <input id="email" name="email_contato" type="email" placeholder="voce@exemplo.com" required />
+                </div>
+                <div class="form-group">
+                  <label for="whatsapp">
+                    WhatsApp <span class="required">*</span>
+                  </label>
+                  <input
+                    id="whatsapp"
+                    name="whatsapp_contato"
+                    type="tel"
+                    placeholder="(00) 00000-0000"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="cidade_geral">
+                    Cidade onde deseja atuar
+                  </label>
+                  <input
+                    id="cidade_geral"
+                    name="cidade_geral"
+                    type="text"
+                    placeholder="Ex: Gandu, Cruz das Almas..."
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="instagram">
+                    Instagram (se tiver)
+                  </label>
+                  <input
+                    id="instagram"
+                    name="instagram"
+                    type="text"
+                    placeholder="@seuusuario"
+                  />
+                  <p class="helper">
+                    ⚠️ Se informar o @, deixe o perfil aberto para análise.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Seção final - Envio -->
+            <div class="form-section">
+              <div class="form-section-title">Seção 4: Envio</div>
+              <div class="form-footer">
+                <p>
+                  Ao enviar este formulário, você declara que as informações prestadas são verdadeiras.
+                </p>
+                <p>
+                  Se o seu perfil avançar para a próxima etapa, a equipe da
+                  <strong>IAI Fitness</strong> entrará em contato pelo WhatsApp ou e-mail informados.
+                </p>
+                <button type="submit" class="btn-primary">Enviar candidatura</button>
+                <p id="formFeedback" class="helper"></p>
+              </div>
+            </div>
+          </form>
+        </aside>
+      </section>
+    </main>
+
+    <footer>
+      <p>
+        © <span id="year"></span> <span class="brand-footer">IAI Fitness</span> •
+        Seleção de Colaboradores.
+      </p>
+    </footer>
+  </div>
+
+  <script>
+    // rolar até o formulário
+    function scrollToForm() {
+      const el = document.getElementById("formulario");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }
+
+    // ano automático no rodapé
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const form = document.getElementById("colaboradorForm");
+    const feedbackEl = document.getElementById("formFeedback");
+    const submitBtn = form.querySelector("button[type='submit']");
+
+    // controle dos blocos por função
+    const roleRadios = document.querySelectorAll('input[name="funcao_desejada"]');
+    const roleBlocks = document.querySelectorAll(".role-block");
+
+    function atualizarRoleBlocks() {
+      const selecionado = document.querySelector('input[name="funcao_desejada"]:checked');
+      roleBlocks.forEach((blk) => {
+        if (selecionado && blk.getAttribute("data-role") === selecionado.value) {
+          blk.classList.add("active");
+        } else {
+          blk.classList.remove("active");
+        }
+      });
+    }
+
+    roleRadios.forEach((radio) => {
+      radio.addEventListener("change", atualizarRoleBlocks);
+    });
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      // validação nativa HTML5
+      if (!form.reportValidity()) {
+        return;
+      }
+
+      // limpa mensagens e estados anteriores
+      feedbackEl.textContent = "";
+      feedbackEl.style.color = "#bbbbbb";
+
+      // trava o botão durante o envio
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Enviando...";
+
+      // monta objeto com os dados do formulário
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data),
+        });
+
+        if (response.ok) {
+          feedbackEl.textContent = "✅ Candidatura enviada com sucesso!";
+          feedbackEl.style.color = "#00ff88";
+          form.reset();
+          atualizarRoleBlocks(); // esconde blocos após reset
+        } else {
+          feedbackEl.textContent =
+            "❌ Erro ao enviar os dados. Verifique o webhook do n8n ou o fluxo configurado.";
+          feedbackEl.style.color = "#ff4b4b";
+        }
+      } catch (error) {
+        feedbackEl.textContent =
+          "⚠️ Falha de conexão. Verifique sua internet ou se o servidor n8n está acessível.";
+        feedbackEl.style.color = "#ffcc00";
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Enviar candidatura";
+      }
+    });
+  </script>
+</body>
+</html>
