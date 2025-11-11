@@ -441,17 +441,17 @@
     .scale-inputs {
       display: flex;
       gap: 8px;
-      flex-wrap: nowrap;           /* impede quebra de linha */
-      justify-content: flex-start; /* mantém alinhados à esquerda */
+      flex-wrap: nowrap;
+      justify-content: flex-start;
     }
 
     .scale-inputs label {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 34px;                 /* largura igual para todos */
+      width: 34px;
       height: 34px;
-      border-radius: 50%;          /* forma circular */
+      border-radius: 50%;
       border: 1px solid var(--border);
       cursor: pointer;
       color: var(--muted);
@@ -547,6 +547,60 @@
       display: block;
     }
 
+    /* PRIMEIRA PERGUNTA: OPÇÕES GIGANTES E DESTACADAS */
+    .role-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .role-options label {
+      position: relative;
+      overflow: hidden;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 215, 0, 0.4);
+      background: radial-gradient(circle at 0 0, rgba(255, 215, 0, 0.12), rgba(0, 0, 0, 0.9));
+      padding: 12px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--yellow-soft);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      cursor: pointer;
+      letter-spacing: 0.03em;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.55);
+      transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+    }
+
+    .role-options label span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+
+    .role-options input {
+      display: none;
+    }
+
+    .role-options input:checked + span,
+    .role-options label:has(input:checked) {
+      border-color: var(--yellow);
+      background: radial-gradient(circle at 30% 0, rgba(255, 255, 255, 0.15), rgba(255, 215, 0, 0.15));
+      box-shadow: 0 16px 40px rgba(255, 215, 0, 0.35);
+      color: #fffbe0;
+      transform: translateY(-2px);
+    }
+
+    .role-options label:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 34px rgba(255, 215, 0, 0.28);
+    }
+
     /* ====== RESPONSIVIDADE ADICIONAL ====== */
 
     @media (max-width: 1024px) {
@@ -599,6 +653,10 @@
       .card-header {
         flex-direction: column;
         align-items: flex-start;
+      }
+
+      .role-options {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -711,7 +769,7 @@
             <span class="pill-status">Processo seletivo ativo</span>
           </div>
 
-          <!-- FORMULÁRIO COM INTEGRAÇÃO n8n -->
+          <!-- FORMULÁRIO COM INTEGRAÇÃO n8n (JSON) -->
           <form
             id="colaboradorForm"
             action="https://n8n-n8n-webhook.nyrnfd.easypanel.host/webhook/contratacaodireta"
@@ -726,7 +784,7 @@
                   1. Para qual função você deseja se candidatar?
                   <span class="required">*</span>
                 </label>
-                <div class="options-inline">
+                <div class="role-options">
                   <label>
                     <input type="radio" name="funcao_desejada" value="servicos_gerais" required />
                     <span>🧹 Serviços Gerais</span>
@@ -1504,7 +1562,7 @@
       submitBtn.disabled = true;
       submitBtn.textContent = "Enviando...";
 
-      // monta objeto com os dados do formulário
+      // monta objeto com os dados do formulário em JSON
       const formData = new FormData(form);
       const data = Object.fromEntries(formData.entries());
 
