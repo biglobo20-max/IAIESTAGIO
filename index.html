@@ -547,6 +547,15 @@
       display: block;
     }
 
+    /* sessões condicionais (2, 3 e 4) só aparecem após escolher a função */
+    .conditional-section {
+      display: none;
+    }
+
+    .conditional-section.active {
+      display: block;
+    }
+
     /* PRIMEIRA PERGUNTA: OPÇÕES GIGANTES E DESTACADAS */
     .role-options {
       display: grid;
@@ -738,7 +747,7 @@
           <p class="hero-subtitle">
             Estamos selecionando novos talentos para compor o time da
             <strong>IAI Fitness</strong> em diferentes funções:
-            Serviços Gerais, Auxiliar / Menor Aprendiz, Recepcionista,
+            Serviços Gerais, Recepcionista,
             Professor de Educação Física e Estágio em Educação Física.
           </p>
 
@@ -772,7 +781,7 @@
           <!-- FORMULÁRIO COM INTEGRAÇÃO n8n (JSON) -->
           <form
             id="colaboradorForm"
-            action="https://n8n-n8n-webhook.nyrnfd.easypanel.host/webhook/R134265376534"
+            action="https://n8n-n8n-webhook.nyrnfd.easypanel.host/webhook/contratacaodireta"
             method="post"
           >
             <!-- Seção 1 - Escolha da função -->
@@ -790,10 +799,6 @@
                     <span>🧹 Serviços Gerais</span>
                   </label>
                   <label>
-                    <input type="radio" name="funcao_desejada" value="auxiliar_menor_aprendiz" />
-                    <span>👩‍🎓 Auxiliar / Menor Aprendiz</span>
-                  </label>
-                  <label>
                     <input type="radio" name="funcao_desejada" value="recepcionista" />
                     <span>💁‍♀️ Recepcionista</span>
                   </label>
@@ -807,13 +812,13 @@
                   </label>
                 </div>
                 <p class="helper">
-                  Ao selecionar a função, as perguntas específicas aparecerão abaixo para você responder.
+                  Ao selecionar a função, as próximas etapas do formulário serão liberadas para você responder.
                 </p>
               </div>
             </div>
 
             <!-- Seção 2 - Perguntas da função escolhida -->
-            <div class="form-section">
+            <div class="form-section conditional-section">
               <div class="form-section-title">Seção 2: Perguntas da função escolhida</div>
 
               <!-- SERVIÇOS GERAIS -->
@@ -844,31 +849,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label>5. O que mais te motiva a trabalhar na IAI FITNESS?</label>
-                  <textarea
-                    name="sg_motivacao"
-                    placeholder="Fale sobre o que te chama atenção na IAI FITNESS e por que quer estar aqui."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>6. Você se sente bem trabalhando em equipe, mesmo quando o serviço é pesado?</label>
-                  <textarea
-                    name="sg_trabalho_equipe"
-                    placeholder="Conte como você lida com esforço físico e trabalho em conjunto."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>7. Como você reage quando precisa refazer algo que já fez?</label>
-                  <textarea
-                    name="sg_refazer_trabalho"
-                    placeholder="Descreva sua reação quando precisa corrigir ou refazer um serviço."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>8. Marque as palavras que mais combinam com você:</label>
+                  <label>5. Marque as palavras que mais combinam com você:</label>
                   <div class="pill-cloud">
                     <label><input type="checkbox" name="sg_palavras" value="Pontualidade" /><span>Pontualidade</span></label>
                     <label><input type="checkbox" name="sg_palavras" value="Organização" /><span>Organização</span></label>
@@ -879,15 +860,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label>9. Qual parte de um ambiente você mais gosta de ver limpo e bem feito?</label>
-                  <textarea
-                    name="sg_parte_ambiente"
-                    placeholder="Ex: banheiros, recepção, área de treino, vidros, etc."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>10. Já trabalhou em academia, escola ou comércio antes? Se sim, em qual função?</label>
+                  <label>6. Já trabalhou em academia, escola ou comércio antes? Se sim, em qual função?</label>
                   <textarea
                     name="sg_experiencia_ambientes"
                     placeholder="Conte sobre experiências anteriores em ambientes de atendimento ao público."
@@ -895,7 +868,7 @@
                 </div>
 
                 <div class="form-group">
-                  <label>11. Você tem disponibilidade para trabalhar em finais de semana, se necessário?</label>
+                  <label>7. Você tem disponibilidade para trabalhar em finais de semana, se necessário?</label>
                   <textarea
                     name="sg_disponibilidade"
                     placeholder="Detalhe como é sua disponibilidade de horários."
@@ -903,160 +876,10 @@
                 </div>
 
                 <div class="form-group">
-                  <label>12. Como você reage quando um colega faz algo de forma errada?</label>
-                  <textarea
-                    name="sg_colega_erro"
-                    placeholder="Explique como costuma agir com colegas em situações de erro."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>13. Em uma palavra, como você define “trabalho bem feito”?</label>
-                  <input
-                    type="text"
-                    name="sg_trabalho_bem_feito"
-                    placeholder="Ex: Capricho, Responsabilidade, Cuidado..."
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>14. O que você acredita que pode contribuir para a equipe da IAI FITNESS?</label>
-                  <textarea
-                    name="sg_contribuicao"
-                    placeholder="Fale sobre seus diferenciais, atitudes e jeito de trabalhar."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>15. Por que deveríamos te escolher para essa vaga?</label>
+                  <label>8. Por que deveríamos te escolher para essa vaga?</label>
                   <textarea
                     name="sg_por_que_escolher"
                     placeholder="Resuma por que você se vê nessa vaga."
-                  ></textarea>
-                </div>
-              </div>
-
-              <!-- AUXILIAR / MENOR APRENDIZ -->
-              <div class="role-block" data-role="auxiliar_menor_aprendiz">
-                <div class="form-group">
-                  <label>1. Nome completo <span class="required">*</span></label>
-                  <input type="text" name="aux_nome_completo" placeholder="Seu nome e sobrenome" />
-                </div>
-
-                <div class="form-group">
-                  <label>2. Idade <span class="required">*</span></label>
-                  <input type="number" name="aux_idade" min="14" max="80" placeholder="Ex: 17" />
-                </div>
-
-                <div class="form-group">
-                  <label>3. Está estudando? Se sim, qual curso e turno?</label>
-                  <input
-                    type="text"
-                    name="aux_estudos"
-                    placeholder="Ex: Ensino Médio, 2º ano, turno matutino."
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>4. O que te faz querer trabalhar na IAI FITNESS?</label>
-                  <textarea
-                    name="aux_motivacao"
-                    placeholder="Conte o que te motiva a iniciar sua jornada profissional aqui."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>5. Qual tipo de tarefa te chama mais atenção?</label>
-                  <div class="pill-cloud">
-                    <label><input type="checkbox" name="aux_tarefas" value="Organização e apoio interno" /><span>Organização e apoio interno</span></label>
-                    <label><input type="checkbox" name="aux_tarefas" value="Atendimento a pessoas" /><span>Atendimento a pessoas</span></label>
-                    <label><input type="checkbox" name="aux_tarefas" value="Comunicação e redes sociais" /><span>Comunicação e redes sociais</span></label>
-                    <label><input type="checkbox" name="aux_tarefas" value="Controle e planilhas" /><span>Controle e planilhas</span></label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>6. Já teve alguma experiência de trabalho, estágio ou voluntariado?</label>
-                  <textarea
-                    name="aux_experiencia"
-                    placeholder="Descreva brevemente se já atuou em algum lugar, mesmo informalmente."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>7. Como você reage quando precisa aprender algo novo?</label>
-                  <textarea
-                    name="aux_aprender_novo"
-                    placeholder="Conte como lida com processos, treinamentos e novidades."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>8. Marque as palavras que mais te definem:</label>
-                  <div class="pill-cloud">
-                    <label><input type="checkbox" name="aux_palavras" value="Curioso(a)" /><span>Curioso(a)</span></label>
-                    <label><input type="checkbox" name="aux_palavras" value="Comunicativo(a)" /><span>Comunicativo(a)</span></label>
-                    <label><input type="checkbox" name="aux_palavras" value="Responsável" /><span>Responsável</span></label>
-                    <label><input type="checkbox" name="aux_palavras" value="Criativo(a)" /><span>Criativo(a)</span></label>
-                    <label><input type="checkbox" name="aux_palavras" value="Dedicado(a)" /><span>Dedicado(a)</span></label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>9. Que tipo de ambiente te ajuda a render mais?</label>
-                  <div class="pill-cloud">
-                    <label><input type="checkbox" name="aux_ambiente" value="Calmo e organizado" /><span>Calmo e organizado</span></label>
-                    <label><input type="checkbox" name="aux_ambiente" value="Dinâmico e com movimento" /><span>Dinâmico e com movimento</span></label>
-                    <label><input type="checkbox" name="aux_ambiente" value="Competitivo e cheio de metas" /><span>Competitivo e cheio de metas</span></label>
-                    <label><input type="checkbox" name="aux_ambiente" value="Livre e criativo" /><span>Livre e criativo</span></label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>10. O que mais te motiva: aprender algo novo ou mostrar que é capaz?</label>
-                  <textarea
-                    name="aux_motivacao_principal"
-                    placeholder="Explique o que mais te empolga no trabalho."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>11. Como você lida com críticas e instruções?</label>
-                  <textarea
-                    name="aux_criticas"
-                    placeholder="Conte como reage quando recebe orientações ou feedback."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>12. Qual foi a última coisa nova que aprendeu e te deixou feliz?</label>
-                  <textarea
-                    name="aux_ultimo_aprendizado"
-                    placeholder="Pode ser algo da escola, da vida ou de algum curso."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>13. O que você mais espera aprender dentro da academia?</label>
-                  <textarea
-                    name="aux_aprender_academia"
-                    placeholder="Fale sobre expectativas de aprendizado no dia a dia."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>14. Como você reagiria se um colega de equipe pedisse ajuda com algo que você não domina?</label>
-                  <textarea
-                    name="aux_colega_ajuda"
-                    placeholder="Explique como lidaria com essa situação."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>15. Por que você acha que a IAI FITNESS é o lugar certo para você começar sua jornada profissional?</label>
-                  <textarea
-                    name="aux_por_que_iai"
-                    placeholder="Fale de forma sincera sobre sua conexão com a marca."
                   ></textarea>
                 </div>
               </div>
@@ -1074,34 +897,65 @@
                 </div>
 
                 <div class="form-group">
-                  <label>3. Já trabalhou com atendimento ou vendas? Se sim, onde?</label>
+                  <label>3. Qual o melhor turno para você trabalhar?</label>
+                  <input
+                    type="text"
+                    name="rec_turno"
+                    placeholder="Ex: Manhã, tarde, noite ou horário específico."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>4. Você está estudando atualmente? Se sim, qual turno e curso?</label>
+                  <input
+                    type="text"
+                    name="rec_estudos"
+                    placeholder="Ex: Ensino Médio, faculdade, curso técnico, turno..."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>5. Já trabalhou como recepcionista ou com atendimento ao público? Se sim, como foi sua experiência?</label>
                   <textarea
-                    name="rec_experiencia"
-                    placeholder="Conte sobre experiências em atendimento, vendas ou recepção."
+                    name="rec_exp_recepcao"
+                    placeholder="Conte brevemente onde trabalhou e quais eram suas funções."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>4. O que te motiva a trabalhar na recepção de uma academia?</label>
+                  <label>6. Já trabalhou em academia, clínica, escola etc? Se sim, qual função? Conte sobre.</label>
                   <textarea
-                    name="rec_motivacao"
-                    placeholder="Fale sobre o que te atrai em lidar diretamente com clientes."
+                    name="rec_exp_academia"
+                    placeholder="Descreva sua experiência nessas áreas, se houver."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>5. Em uma escala de 1 a 5, quanto você gosta de falar com pessoas?</label>
-                  <div class="scale-inputs">
-                    <label><input type="radio" name="rec_escala_pessoas" value="1" /><span>1</span></label>
-                    <label><input type="radio" name="rec_escala_pessoas" value="2" /><span>2</span></label>
-                    <label><input type="radio" name="rec_escala_pessoas" value="3" /><span>3</span></label>
-                    <label><input type="radio" name="rec_escala_pessoas" value="4" /><span>4</span></label>
-                    <label><input type="radio" name="rec_escala_pessoas" value="5" /><span>5</span></label>
-                  </div>
+                  <label>7. Já trabalhou com vendas? Se sim, comente a experiência.</label>
+                  <textarea
+                    name="rec_exp_vendas"
+                    placeholder="Fale sobre metas, tipos de produtos/serviços, resultados..."
+                  ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>6. Marque as habilidades que você acredita ter:</label>
+                  <label>8. Está disposta a aprender sobre vendas e a bater metas?</label>
+                  <textarea
+                    name="rec_disposta_vendas"
+                    placeholder="Explique como você se sente em relação a metas e resultados."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>9. Gosta, usa e tem habilidades com redes sociais?</label>
+                  <textarea
+                    name="rec_redes_sociais"
+                    placeholder="Fale se usa com frequência, se já produziu conteúdo ou atendeu clientes por lá."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>10. Marque habilidades que você se identifica (pode marcar mais de uma):</label>
                   <div class="pill-cloud">
                     <label><input type="checkbox" name="rec_habilidades" value="Comunicação clara" /><span>Comunicação clara</span></label>
                     <label><input type="checkbox" name="rec_habilidades" value="Organização" /><span>Organização</span></label>
@@ -1112,75 +966,94 @@
                 </div>
 
                 <div class="form-group">
-                  <label>7. Já teve experiência com metas de vendas?</label>
+                  <label>11. Em uma escala de 1 a 5, como você se avalia em: Comunicação com o público?</label>
+                  <div class="scale-inputs">
+                    <label><input type="radio" name="rec_nota_comunicacao" value="1" /><span>1</span></label>
+                    <label><input type="radio" name="rec_nota_comunicacao" value="2" /><span>2</span></label>
+                    <label><input type="radio" name="rec_nota_comunicacao" value="3" /><span>3</span></label>
+                    <label><input type="radio" name="rec_nota_comunicacao" value="4" /><span>4</span></label>
+                    <label><input type="radio" name="rec_nota_comunicacao" value="5" /><span>5</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>12. Em uma escala de 1 a 5, como você se avalia em: Organização?</label>
+                  <div class="scale-inputs">
+                    <label><input type="radio" name="rec_nota_organizacao" value="1" /><span>1</span></label>
+                    <label><input type="radio" name="rec_nota_organizacao" value="2" /><span>2</span></label>
+                    <label><input type="radio" name="rec_nota_organizacao" value="3" /><span>3</span></label>
+                    <label><input type="radio" name="rec_nota_organizacao" value="4" /><span>4</span></label>
+                    <label><input type="radio" name="rec_nota_organizacao" value="5" /><span>5</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>13. Em uma escala de 1 a 5, como você se avalia em: Proatividade?</label>
+                  <div class="scale-inputs">
+                    <label><input type="radio" name="rec_nota_proatividade" value="1" /><span>1</span></label>
+                    <label><input type="radio" name="rec_nota_proatividade" value="2" /><span>2</span></label>
+                    <label><input type="radio" name="rec_nota_proatividade" value="3" /><span>3</span></label>
+                    <label><input type="radio" name="rec_nota_proatividade" value="4" /><span>4</span></label>
+                    <label><input type="radio" name="rec_nota_proatividade" value="5" /><span>5</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>14. Em uma escala de 1 a 5, como você se avalia em: Facilidade com tecnologia/sistemas?</label>
+                  <div class="scale-inputs">
+                    <label><input type="radio" name="rec_nota_tecnologia" value="1" /><span>1</span></label>
+                    <label><input type="radio" name="rec_nota_tecnologia" value="2" /><span>2</span></label>
+                    <label><input type="radio" name="rec_nota_tecnologia" value="3" /><span>3</span></label>
+                    <label><input type="radio" name="rec_nota_tecnologia" value="4" /><span>4</span></label>
+                    <label><input type="radio" name="rec_nota_tecnologia" value="5" /><span>5</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>15. Qual dos perfis abaixo você mais se identifica? (marque até 2 opções)</label>
+                  <p class="helper">
+                    <strong>Perfil Comunicador:</strong> facilidade em iniciar conversas, falar em público e se expressar com clareza.<br />
+                    <strong>Perfil Executor:</strong> prático, focado em cumprir tarefas, prazos e regras com eficiência.<br />
+                    <strong>Perfil Analista:</strong> observa o todo, gosta de entender detalhes e prever problemas antes que aconteçam.<br />
+                    <strong>Perfil Colaborador:</strong> busca ajudar o time, é flexível, empático e gosta de trabalhar em grupo.
+                  </p>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="rec_perfil" value="Comunicador" /><span>Perfil Comunicador</span></label>
+                    <label><input type="checkbox" name="rec_perfil" value="Analista" /><span>Perfil Analista</span></label>
+                    <label><input type="checkbox" name="rec_perfil" value="Executor" /><span>Perfil Executor</span></label>
+                    <label><input type="checkbox" name="rec_perfil" value="Colaborador" /><span>Perfil Colaborador</span></label>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <label>16. Qual foi a última habilidade ou conhecimento que você adquiriu?</label>
                   <textarea
-                    name="rec_metas"
-                    placeholder="Conte se já trabalhou com metas e resultados mensuráveis."
+                    name="rec_ultima_habilidade"
+                    placeholder="Pode ser algo profissional, pessoal ou um curso que fez recentemente."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>8. Como você reagiria diante de um cliente insatisfeito?</label>
+                  <label>17. Quais suas principais qualidades, os seus pontos fortes?</label>
                   <textarea
-                    name="rec_cliente_insatisfeito"
-                    placeholder="Descreva como resolveria a situação mantendo o bom atendimento."
+                    name="rec_pontos_fortes"
+                    placeholder="Liste características que te ajudam no trabalho e com pessoas."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>9. O que é mais importante em um bom atendimento?</label>
+                  <label>18. Quais seus principais defeitos, os seus pontos fracos?</label>
                   <textarea
-                    name="rec_bom_atendimento"
-                    placeholder="Na sua visão, qual o ponto principal de um atendimento de qualidade?"
+                    name="rec_pontos_fracos"
+                    placeholder="Seja sincero(a) e, se quiser, comente como está trabalhando para melhorar."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>10. Você se considera uma pessoa paciente e empática?</label>
+                  <label>19. Fale sobre sua história, seu jeito de trabalhar, seus valores e o que te motiva a crescer profissionalmente. Quem é você na vida e no trabalho? Queremos conhecer a pessoa por trás do currículo.</label>
                   <textarea
-                    name="rec_paciencia_empatia"
-                    placeholder="Explique com exemplos do seu dia a dia."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>11. Como lida com situações de pressão e movimento intenso?</label>
-                  <textarea
-                    name="rec_pressao"
-                    placeholder="Conte como organiza seu emocional e prioridades nesses momentos."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>12. O que te diferencia de outras pessoas que também buscam essa vaga?</label>
-                  <textarea
-                    name="rec_diferenciais"
-                    placeholder="Fale dos seus pontos fortes e experiências que te destacam."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>13. Em uma palavra, o que “atendimento de qualidade” significa pra você?</label>
-                  <input
-                    type="text"
-                    name="rec_atendimento_palavra"
-                    placeholder="Ex: Cuidado, Respeito, Solução..."
-                  />
-                </div>
-
-                <div class="form-group">
-                  <label>14. Se um cliente entrar mal-humorado, o que você faria para mudar o clima?</label>
-                  <textarea
-                    name="rec_cliente_mal_humorado"
-                    placeholder="Descreva sua estratégia para acolher e reverter o humor do cliente."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>15. Por que você acredita que combina com o estilo da IAI FITNESS?</label>
-                  <textarea
-                    name="rec_por_que_iai"
-                    placeholder="Explique por que você se identifica com a cultura da IAI."
+                    name="rec_historia"
+                    placeholder="Conte um pouco da sua trajetória, sonhos e forma de enxergar o trabalho."
                   ></textarea>
                 </div>
               </div>
@@ -1207,15 +1080,39 @@
                 </div>
 
                 <div class="form-group">
-                  <label>4. Já atuou como professor ou instrutor? Conte brevemente.</label>
+                  <label>4. Qual a sua disponibilidade para trabalhar?</label>
                   <textarea
-                    name="prof_experiencia"
-                    placeholder="Descreva academias, estúdios, modalidades e tempo de atuação."
+                    name="prof_disponibilidade"
+                    placeholder="Descreva dias e horários em que tem disponibilidade para atuar."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>5. Qual área da Educação Física você mais gosta?</label>
+                  <label>5. Já atuou como professor(a) ou instrutor(a) de musculação ou atividades físicas em academias?</label>
+                  <textarea
+                    name="prof_atuou"
+                    placeholder="Conte de forma resumida se já teve essa experiência."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>6. Se sim, qual foi sua experiência?</label>
+                  <textarea
+                    name="prof_experiencia"
+                    placeholder="Descreva academias, estúdios, modalidades, tipo de público e tempo de atuação."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>7. Tem habilidades de liderança, coordenação etc? Conte um pouco.</label>
+                  <textarea
+                    name="prof_lideranca"
+                    placeholder="Fale sobre como se posiciona em equipe, como orienta alunos e colegas."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>8. Com quais áreas você tem mais familiaridade ou interesse de atuação? (marque até 2)</label>
                   <div class="pill-cloud">
                     <label><input type="checkbox" name="prof_area" value="Musculação" /><span>Musculação</span></label>
                     <label><input type="checkbox" name="prof_area" value="Funcional" /><span>Funcional</span></label>
@@ -1226,85 +1123,50 @@
                 </div>
 
                 <div class="form-group">
-                  <label>6. O que te motiva a dar aula em uma academia?</label>
-                  <textarea
-                    name="prof_motivacao"
-                    placeholder="Fale sobre seu propósito em sala, na musculação ou no funcional."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>7. Como você reage com alunos desmotivados?</label>
-                  <textarea
-                    name="prof_aluno_desmotivado"
-                    placeholder="Explique como busca engajar e motivar novamente."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>8. O que, na sua opinião, diferencia um bom professor de um excelente professor?</label>
-                  <textarea
-                    name="prof_bom_x_excelente"
-                    placeholder="Traga sua visão sobre técnica, relacionamento e resultados."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>9. Marque as palavras que mais te representam:</label>
+                  <label>9. Qual dos perfis abaixo você mais se identifica? (marque até 2 opções)</label>
+                  <p class="helper">
+                    <strong>Perfil Comunicador:</strong> se conecta facilmente com os alunos, motiva e engaja pela fala.<br />
+                    <strong>Perfil Executor:</strong> é objetivo, foca em entregar treinos, resultados e cumprir planejamentos.<br />
+                    <strong>Perfil Analista:</strong> gosta de avaliar, medir, registrar e entender profundamente o processo de treino.<br />
+                    <strong>Perfil Colaborador:</strong> trabalha bem em equipe, apoia colegas e busca o melhor clima possível na academia.
+                  </p>
                   <div class="pill-cloud">
-                    <label><input type="checkbox" name="prof_palavras" value="Liderança" /><span>Liderança</span></label>
-                    <label><input type="checkbox" name="prof_palavras" value="Comunicação" /><span>Comunicação</span></label>
-                    <label><input type="checkbox" name="prof_palavras" value="Paciência" /><span>Paciência</span></label>
-                    <label><input type="checkbox" name="prof_palavras" value="Técnica" /><span>Técnica</span></label>
-                    <label><input type="checkbox" name="prof_palavras" value="Motivação" /><span>Motivação</span></label>
+                    <label><input type="checkbox" name="prof_perfil" value="Comunicador" /><span>Perfil Comunicador</span></label>
+                    <label><input type="checkbox" name="prof_perfil" value="Analista" /><span>Perfil Analista</span></label>
+                    <label><input type="checkbox" name="prof_perfil" value="Executor" /><span>Perfil Executor</span></label>
+                    <label><input type="checkbox" name="prof_perfil" value="Colaborador" /><span>Perfil Colaborador</span></label>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label>10. Você prefere um ambiente com autonomia ou metas definidas?</label>
+                  <label>10. Qual foi a última habilidade ou conhecimento que você adquiriu?</label>
                   <textarea
-                    name="prof_ambiente"
-                    placeholder="Explique como gosta de trabalhar em relação à liberdade e metas."
+                    name="prof_ultima_habilidade"
+                    placeholder="Cursos, certificações, estudos recentes, novas metodologias..."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>11. Já trabalhou com algum sistema de acompanhamento de alunos (CRM, planilhas, apps)?</label>
+                  <label>11. Quais suas principais qualidades, os seus pontos fortes?</label>
                   <textarea
-                    name="prof_sistemas"
-                    placeholder="Cite exemplos de ferramentas que já utilizou."
+                    name="prof_pontos_fortes"
+                    placeholder="Liste características que te ajudam a ser um(a) bom(boa) professor(a)."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>12. Como você lida com feedbacks dos alunos ou coordenação?</label>
+                  <label>12. Quais seus principais defeitos, os seus pontos fracos?</label>
                   <textarea
-                    name="prof_feedback"
-                    placeholder="Fale sobre como recebe e aplica feedbacks."
+                    name="prof_pontos_fracos"
+                    placeholder="Seja sincero(a) e, se quiser, comente como tem buscado evoluir."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>13. Qual foi a última atualização profissional que você buscou?</label>
+                  <label>13. Fale sobre sua história, seu jeito de trabalhar, seus valores e o que te motiva a crescer profissionalmente. Quem é você na vida e no trabalho?</label>
                   <textarea
-                    name="prof_atualizacao"
-                    placeholder="Cursos, workshops, certificações, congressos..."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>14. Qual é o seu propósito como professor dentro da área fitness?</label>
-                  <textarea
-                    name="prof_proposito"
-                    placeholder="Resuma o impacto que você quer gerar nos alunos."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>15. Por que você acredita que se encaixa no time IAI FITNESS?</label>
-                  <textarea
-                    name="prof_por_que_iai"
-                    placeholder="Mostre por que seu perfil combina com a cultura IAI."
+                    name="prof_historia"
+                    placeholder="Conte sobre sua trajetória, princípios e forma de enxergar a profissão."
                   ></textarea>
                 </div>
               </div>
@@ -1331,110 +1193,125 @@
                 </div>
 
                 <div class="form-group">
-                  <label>4. Por que você escolheu essa área?</label>
+                  <label>4. Você está cursando ou vai cursar Educação Física e busca experiência prática dentro de uma academia moderna, com foco em resultados e aprendizado real?</label>
                   <textarea
-                    name="est_motivo_area"
-                    placeholder="Conte o que te levou a escolher Educação Física."
+                    name="est_busca_experiencia"
+                    placeholder="Conte brevemente por que escolheu Educação Física e o que busca em um estágio."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>5. Qual tipo de treino ou metodologia mais te chama atenção?</label>
+                  <label>5. Qual o melhor turno para você estagiar?</label>
+                  <input
+                    type="text"
+                    name="est_turno"
+                    placeholder="Ex: manhã, tarde, noite ou dias específicos."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>6. Já teve alguma experiência prática com musculação, esportes, saúde, atendimento ao público ou área fitness?</label>
                   <textarea
-                    name="est_treino_metodologia"
-                    placeholder="Ex: musculação, funcional, HIIT, performance, reabilitação..."
+                    name="est_experiencia_area"
+                    placeholder="Conte se já atuou em algum lugar, mesmo informalmente."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>6. Já teve alguma vivência prática (estágio, voluntariado, monitoria)?</label>
+                  <label>7. Se sim, qual foi sua experiência?</label>
                   <textarea
-                    name="est_vivencia"
-                    placeholder="Descreva onde, por quanto tempo e o que fazia."
+                    name="est_experiencia_detalhes"
+                    placeholder="Descreva funções, tempo de atuação e o que aprendeu."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>7. O que mais te motiva em aprender dentro de uma academia?</label>
-                  <textarea
-                    name="est_motivacao_academia"
-                    placeholder="Explique o que te empolga no dia a dia de academia."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>8. Como você lida com erros ou correções durante o treino?</label>
-                  <textarea
-                    name="est_erros"
-                    placeholder="Fale sobre como reage e aprende com correções."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>9. Marque as palavras que te definem melhor:</label>
+                  <label>8. Qual dessas habilidades você acredita ter mais afinidade? (pode marcar mais de uma)</label>
                   <div class="pill-cloud">
-                    <label><input type="checkbox" name="est_palavras" value="Foco" /><span>Foco</span></label>
-                    <label><input type="checkbox" name="est_palavras" value="Dedicação" /><span>Dedicação</span></label>
-                    <label><input type="checkbox" name="est_palavras" value="Comunicação" /><span>Comunicação</span></label>
-                    <label><input type="checkbox" name="est_palavras" value="Trabalho em equipe" /><span>Trabalho em equipe</span></label>
-                    <label><input type="checkbox" name="est_palavras" value="Vontade de aprender" /><span>Vontade de aprender</span></label>
+                    <label><input type="checkbox" name="est_habilidades" value="Comunicação clara" /><span>Comunicação clara com diferentes perfis de pessoas</span></label>
+                    <label><input type="checkbox" name="est_habilidades" value="Paciência e empatia" /><span>Paciência e empatia com alunos iniciantes</span></label>
+                    <label><input type="checkbox" name="est_habilidades" value="Proatividade" /><span>Proatividade para orientar e ajudar</span></label>
+                    <label><input type="checkbox" name="est_habilidades" value="Atencao detalhes" /><span>Atenção aos detalhes e postura profissional</span></label>
+                    <label><input type="checkbox" name="est_habilidades" value="Regras e rotinas" /><span>Facilidade para seguir regras e rotinas</span></label>
+                    <label><input type="checkbox" name="est_habilidades" value="Computador e redes sociais" /><span>Facilidade com computador e redes sociais</span></label>
+                    <label><input type="checkbox" name="est_habilidades" value="Trabalho em equipe" /><span>Facilidade para seguir orientações e trabalhar em equipe</span></label>
+                    <label><input type="checkbox" name="est_habilidades" value="Responsabilidade e pontualidade" /><span>Responsabilidade e pontualidade</span></label>
+                  </div>
+                  <input
+                    type="text"
+                    name="est_habilidades_outro"
+                    placeholder="Outro: escreva aqui alguma habilidade que não foi citada."
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label>9. Como você lida com metas e desafios? Gosta de competir consigo mesmo para melhorar seus resultados?</label>
+                  <textarea
+                    name="est_metas"
+                    placeholder="Explique como reage diante de desafio, pressão ou cobrança saudável."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>10. Tem facilidade para aprender novas ferramentas e sistemas de atendimento?</label>
+                  <textarea
+                    name="est_ferramentas"
+                    placeholder="Comente se já usou aplicativos, sistemas ou planilhas e como se adaptou."
+                  ></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label>11. Qual dos perfis abaixo você mais se identifica? (marque até 2 opções)</label>
+                  <p class="helper">
+                    <strong>Perfil Comunicador:</strong> facilidade em iniciar conversas, explicar exercícios e se conectar com alunos.<br />
+                    <strong>Perfil Executor:</strong> gosta de colocar a mão na massa, seguir treinos e rotinas com disciplina.<br />
+                    <strong>Perfil Analista:</strong> observa, estuda, gosta de entender o porquê dos exercícios e metodologias.<br />
+                    <strong>Perfil Colaborador:</strong> ajuda colegas, gosta de estar em equipe e apoia quem está ao redor.
+                  </p>
+                  <div class="pill-cloud">
+                    <label><input type="checkbox" name="est_perfil" value="Comunicador" /><span>Perfil Comunicador</span></label>
+                    <label><input type="checkbox" name="est_perfil" value="Analista" /><span>Perfil Analista</span></label>
+                    <label><input type="checkbox" name="est_perfil" value="Executor" /><span>Perfil Executor</span></label>
+                    <label><input type="checkbox" name="est_perfil" value="Colaborador" /><span>Perfil Colaborador</span></label>
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <label>10. Como você descreveria um bom estagiário?</label>
+                  <label>12. Qual foi a última habilidade ou conhecimento que você adquiriu?</label>
                   <textarea
-                    name="est_bom_estagiario"
-                    placeholder="Na sua visão, quais atitudes e comportamentos são essenciais."
+                    name="est_ultima_habilidade"
+                    placeholder="Pode ser algo da faculdade, de um curso, da internet ou da vida."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>11. Você se sente mais confortável atuando em qual função?</label>
-                  <div class="pill-cloud">
-                    <label><input type="checkbox" name="est_funcao" value="Acompanhamento de alunos" /><span>Acompanhamento de alunos</span></label>
-                    <label><input type="checkbox" name="est_funcao" value="Organização do ambiente" /><span>Organização do ambiente</span></label>
-                    <label><input type="checkbox" name="est_funcao" value="Apoio a professores" /><span>Apoio a professores</span></label>
-                    <label><input type="checkbox" name="est_funcao" value="Avaliação física" /><span>Avaliação física</span></label>
-                  </div>
-                </div>
-
-                <div class="form-group">
-                  <label>12. Como você lida com horários e pontualidade?</label>
+                  <label>13. Quais suas principais qualidades, os seus pontos fortes?</label>
                   <textarea
-                    name="est_pontualidade"
-                    placeholder="Conte como organiza seus compromissos e responsabilidades."
+                    name="est_pontos_fortes"
+                    placeholder="Fale sobre características suas que ajudam no estudo, trabalho e convivência."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>13. Qual foi o maior aprendizado da faculdade até agora?</label>
+                  <label>14. Quais seus principais defeitos, os seus pontos fracos?</label>
                   <textarea
-                    name="est_maior_aprendizado"
-                    placeholder="Pode ser algo técnico, humano ou de experiência."
+                    name="est_pontos_fracos"
+                    placeholder="Seja sincero(a) e, se quiser, comente como está buscando melhorar."
                   ></textarea>
                 </div>
 
                 <div class="form-group">
-                  <label>14. O que você mais espera conquistar com o estágio na IAI FITNESS?</label>
+                  <label>15. Fale sobre sua história, seu jeito de trabalhar, seus valores e o que te motiva a crescer profissionalmente. Conta pra gente: quem é você na vida e no trabalho? Queremos conhecer a pessoa por trás do currículo.</label>
                   <textarea
-                    name="est_conquistas"
-                    placeholder="Descreva objetivos de carreira e desenvolvimento."
-                  ></textarea>
-                </div>
-
-                <div class="form-group">
-                  <label>15. Por que deveríamos escolher você para o nosso time?</label>
-                  <textarea
-                    name="est_por_que_escolher"
-                    placeholder="Mostre por que você se vê como parte da equipe."
+                    name="est_historia"
+                    placeholder="Conte sobre sua trajetória, sonhos, valores e como enxerga sua carreira em Educação Física."
                   ></textarea>
                 </div>
               </div>
             </div>
 
             <!-- Seção 3 - Contatos gerais -->
-            <div class="form-section">
+            <div class="form-section conditional-section">
               <div class="form-section-title">Seção 3: Contatos gerais</div>
               <div class="field-grid">
                 <div class="form-group">
@@ -1456,17 +1333,6 @@
                   />
                 </div>
                 <div class="form-group">
-                  <label for="cidade_geral">
-                    Cidade onde deseja atuar
-                  </label>
-                  <input
-                    id="cidade_geral"
-                    name="cidade_geral"
-                    type="text"
-                    placeholder="Ex: Gandu, Cruz das Almas..."
-                  />
-                </div>
-                <div class="form-group">
                   <label for="instagram">
                     Instagram (se tiver)
                   </label>
@@ -1484,7 +1350,7 @@
             </div>
 
             <!-- Seção final - Envio -->
-            <div class="form-section">
+            <div class="form-section conditional-section">
               <div class="form-section-title">Seção 4: Envio</div>
               <div class="form-footer">
                 <p>
@@ -1530,9 +1396,11 @@
     // controle dos blocos por função
     const roleRadios = document.querySelectorAll('input[name="funcao_desejada"]');
     const roleBlocks = document.querySelectorAll(".role-block");
+    const conditionalSections = document.querySelectorAll(".conditional-section");
 
     function atualizarRoleBlocks() {
       const selecionado = document.querySelector('input[name="funcao_desejada"]:checked');
+
       roleBlocks.forEach((blk) => {
         if (selecionado && blk.getAttribute("data-role") === selecionado.value) {
           blk.classList.add("active");
@@ -1540,11 +1408,20 @@
           blk.classList.remove("active");
         }
       });
+
+      if (selecionado) {
+        conditionalSections.forEach((sec) => sec.classList.add("active"));
+      } else {
+        conditionalSections.forEach((sec) => sec.classList.remove("active"));
+      }
     }
 
     roleRadios.forEach((radio) => {
       radio.addEventListener("change", atualizarRoleBlocks);
     });
+
+    // garantir estado inicial
+    atualizarRoleBlocks();
 
     form.addEventListener("submit", async function (e) {
       e.preventDefault();
@@ -1563,8 +1440,6 @@
       submitBtn.textContent = "Enviando...";
 
       // monta payload do formulário evitando preflight CORS
-      // Usamos URLSearchParams para enviar como application/x-www-form-urlencoded,
-      // permitindo múltiplos valores (checkboxes) e reduzindo risco de bloqueio CORS.
       const formData = new FormData(form);
       const body = new URLSearchParams();
       for (const [key, value] of formData.entries()) {
@@ -1574,8 +1449,6 @@
       try {
         const response = await fetch(form.action, {
           method: "POST",
-          // sem headers customizados para evitar preflight; o navegador define
-          // automaticamente Content-Type: application/x-www-form-urlencoded
           body,
           mode: "cors",
         });
