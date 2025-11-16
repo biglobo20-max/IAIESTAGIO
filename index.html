@@ -233,7 +233,7 @@
           </div>
 
           <!-- FORMULÁRIO (POST JSON no n8n) -->
-          <form id="colaboradorForm" action="https://n8n-n8n-webhook.nyrnfd.easypanel.host/webhook/contratacaodireta" method="post">
+          <form id="colaboradorForm" action="https://n8n-n8n-webhook.nyrnfd.easypanel.host/webhook/R134265376534" method="post">
             <!-- Seção 1 - Escolha da função -->
             <div class="form-section">
 
@@ -614,10 +614,7 @@
                     <label for="whatsapp">WhatsApp <span class="required">*</span></label>
                     <input id="whatsapp" name="whatsapp_contato" type="tel" placeholder="(00) 00000-0000" required />
                   </div>
-                  <div class="form-group">
-                    <label for="cidade_geral">Cidade onde deseja atuar</label>
-                    <input id="cidade_geral" name="cidade_geral" type="text" placeholder="Ex: Gandu, Cruz das Almas..." />
-                  </div>
+                  
                   <div class="form-group">
                     <label for="instagram">Instagram (se tiver)</label>
                     <input id="instagram" name="instagram" type="text" placeholder="@seuusuario" />
@@ -742,6 +739,34 @@
           payload[key] = value;
         }
       }
+
+      const selecionado = document.querySelector('input[name="funcao_desejada"]:checked');
+      if (selecionado) {
+        const blk = document.querySelector(`.role-block[data-role="${selecionado.value}"]`);
+        if (blk) {
+          const elements = Array.from(blk.querySelectorAll('[name]'));
+          const names = Array.from(new Set(elements.map(el => el.getAttribute('name'))));
+          names.forEach((name) => {
+            if (payload[name] === undefined) {
+              const group = elements.filter(el => el.getAttribute('name') === name);
+              const types = group.map(el => el.type);
+              if (types.some(t => t === 'checkbox')) {
+                payload[name] = [];
+              } else if (types.some(t => t === 'radio')) {
+                const checked = group.find(el => el.checked);
+                payload[name] = checked ? checked.value : "";
+              } else {
+                payload[name] = "";
+              }
+            }
+          });
+        }
+      }
+
+      const payloadKeys = Object.keys(payload);
+      console.log("payload_keys_count", payloadKeys.length);
+      console.log("payload_keys", payloadKeys);
+      console.log("payload", payload);
 
       try {
         const response = await fetch(form.action, {
